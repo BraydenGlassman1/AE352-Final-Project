@@ -1,0 +1,1048 @@
+{
+  "scope": "Independent development verification; only the smaller mechanics/goal/position-convergence checks are rerun by run.py --check.",
+  "grouped_checks": 35,
+  "pass": true,
+  "baseline": {
+    "generated_at_utc": "2026-11-14T21:36:34.284604+00:00",
+    "purpose": "Independent verification of the updated three-file model; not hardware validation.",
+    "parameters": {
+      "m": 1.7,
+      "g": 9.80665,
+      "a": 0.17678,
+      "Ixx": 0.017661,
+      "Iyy": 0.018373,
+      "Izz": 0.034584,
+      "kT": 1.06775e-05,
+      "kQ": 1.52451e-07,
+      "Jr": 7.99e-05,
+      "max_omega": 733.0382858376183,
+      "max_torque": 0.12,
+      "battery_voltage": 14.8,
+      "battery_ah": 5.0,
+      "usable_fraction": 0.8,
+      "efficiency": 0.75,
+      "avionics_power": 5.0,
+      "position_kp": 4.0,
+      "position_kd": 4.0,
+      "attitude_kp": 64.0,
+      "attitude_kd": 16.0,
+      "motor_time_constant": 0.025
+    },
+    "checks": [
+      {
+        "name": "Hover is a plant equilibrium with updated report parameters",
+        "pass": true,
+        "hover_omega_rad_s": 624.7697773123639,
+        "hover_rpm": 5966.111901221124,
+        "hover_shaft_torque_Nm": 0.05950730785659096,
+        "hover_electrical_power_W": 203.2846265494433,
+        "elapsed_s": 0.001563600031659007
+      },
+      {
+        "name": "Unpowered freefall matches the analytic solution",
+        "pass": true,
+        "duration_s": 1,
+        "altitude_m": 95.09667500000008,
+        "velocity_z_m_s": -9.806649999999987,
+        "elapsed_s": 0.02994769997894764
+      },
+      {
+        "name": "Quaternion orientation gives the correct inertial thrust direction",
+        "pass": true,
+        "elapsed_s": 0.0003825000021606684
+      },
+      {
+        "name": "Quaternion kinematics reproduce the report Euler-rate equations",
+        "pass": true,
+        "elapsed_s": 0.0037103999638929963
+      },
+      {
+        "name": "Four rotor locations give the supplied roll/pitch signs",
+        "pass": true,
+        "elapsed_s": 0.002853300014976412
+      },
+      {
+        "name": "Full angular momentum balance holds with unequal roll/pitch inertias",
+        "pass": true,
+        "maximum_balance_error_Nm": 6.245004513516506e-17,
+        "external_moment_Nm": [
+          -0.03133363626999994,
+          0.06266727254000003,
+          -6.0980399999999996e-05
+        ],
+        "elapsed_s": 0.006362899963278323
+      },
+      {
+        "name": "Motor reaction and rotor acceleration have opposite yaw signs",
+        "pass": true,
+        "elapsed_s": 0.000354300020262599
+      },
+      {
+        "name": "Motor torque changes rotor dynamics before creating lift",
+        "pass": true,
+        "elapsed_s": 0.001073799969162792
+      },
+      {
+        "name": "Plant enforces motor saturation and exhausted-battery cutoff",
+        "pass": true,
+        "elapsed_s": 0.00039850000757724047
+      },
+      {
+        "name": "Battery energy remains bounded while unpowered rotors coast",
+        "pass": true,
+        "elapsed_s": 0.0011177000124007463
+      },
+      {
+        "name": "RK4 spin-down converges toward the analytic drag-only solution",
+        "pass": true,
+        "analytic_rad_s": 306.44681249290454,
+        "errors_at_dt_004_002_001": [
+          1.5554007859464036e-06,
+          9.73681721916364e-08,
+          6.087930159992538e-09
+        ],
+        "elapsed_s": 0.021817200002260506
+      },
+      {
+        "name": "Quaternion remains normalized during asymmetric free rotation",
+        "pass": true,
+        "elapsed_s": 0.4980824000085704
+      },
+      {
+        "name": "Controller recovers from position, velocity and attitude disturbances",
+        "pass": true,
+        "final_2s_max_position_error_m": 1.5007642227695545e-06,
+        "final_2s_max_speed_m_s": 3.1580712791397282e-06,
+        "final_2s_max_attitude_error_deg": 6.39312414572999e-05,
+        "minimum_altitude_m": 0.9999985624292986,
+        "elapsed_s": 1.4216481000185013
+      },
+      {
+        "name": "Controller recovers from a 10 percent initial rotor underspeed",
+        "pass": true,
+        "final_2s_max_position_error_m": 5.93391025205392e-09,
+        "final_2s_max_speed_m_s": 9.857080423561119e-09,
+        "final_2s_max_attitude_error_deg": 0.0,
+        "minimum_altitude_m": 0.983838280189833,
+        "elapsed_s": 1.4307493999949656
+      },
+      {
+        "name": "hover: telemetry, same-time shaft torques, actual orientation, and battery",
+        "pass": true,
+        "samples": 24001,
+        "energy_Wh": 6.776154218314353,
+        "usable_battery_Wh": 59.2,
+        "maximum_same_time_torque_error_Nm": 0.0,
+        "max_quaternion_norm_error": 0.0,
+        "elapsed_s": 14.549463199975435
+      },
+      {
+        "name": "circle: telemetry, same-time shaft torques, actual orientation, and battery",
+        "pass": true,
+        "samples": 13001,
+        "energy_Wh": 3.6708570676007723,
+        "usable_battery_Wh": 59.2,
+        "maximum_same_time_torque_error_Nm": 0.0,
+        "max_quaternion_norm_error": 2.220446049250313e-16,
+        "elapsed_s": 13.999610400001984
+      },
+      {
+        "name": "mission: telemetry, same-time shaft torques, actual orientation, and battery",
+        "pass": true,
+        "samples": 32601,
+        "energy_Wh": 8.825549346425895,
+        "usable_battery_Wh": 59.2,
+        "maximum_same_time_torque_error_Nm": 0.0,
+        "max_quaternion_norm_error": 2.220446049250313e-16,
+        "elapsed_s": 41.68059780000476
+      },
+      {
+        "name": "PG1: Hover at 1 m for 120 seconds",
+        "pass": true,
+        "duration_s": 120.0,
+        "maximum_position_error_m": 0.0,
+        "maximum_speed_m_s": 2.01172412062078e-15,
+        "elapsed_s": 0.008876900014001876
+      },
+      {
+        "name": "PG2: Radius-2 m circle, altitude 1 m, speed 0.5 m/s for 60 seconds",
+        "pass": true,
+        "duration_s": 60.0,
+        "max_radius_error_m": 3.023394619838804e-05,
+        "max_altitude_error_m": 5.792209764043932e-07,
+        "max_speed_error_m_s": 5.7029032988265005e-05,
+        "elapsed_s": 0.00849699997343123
+      },
+      {
+        "name": "PG3: Ground launch and two 5 m legs with measured average speed",
+        "pass": true,
+        "legs": [
+          {
+            "displacement_m": 4.993122605518771,
+            "path_length_m": 4.993530980429138,
+            "average_speed_m_s": 0.9987061960858276,
+            "max_altitude_error_m": 0.0012649719624461264,
+            "max_cross_track_error_m": 2.9607038409914513e-16
+          },
+          {
+            "displacement_m": 4.993122606839134,
+            "path_length_m": 4.993545073188605,
+            "average_speed_m_s": 0.9987090146377209,
+            "max_altitude_error_m": 0.00123172177528863,
+            "max_cross_track_error_m": 2.1360181223784025e-06
+          }
+        ],
+        "elapsed_s": 0.00344920001225546
+      },
+      {
+        "name": "PG3: Stops and 90-degree left yaw",
+        "pass": true,
+        "left_yaw_deg": 89.99999999247616,
+        "hover_speeds_m_s": [
+          0.0012398448941051121,
+          0.0012398452437024832
+        ],
+        "elapsed_s": 0.0011066000442951918
+      },
+      {
+        "name": "PG3: Landing speed checked before ground projection",
+        "pass": true,
+        "preprojection_touchdown": {
+          "time_s": 156.005,
+          "speed_m_s": 0.008000000000000587
+        },
+        "max_airborne_descent_m_s": 0.008054157607768888,
+        "events": {
+          "touchdown_speed": 0.008000000000000587,
+          "touchdown_time": 156.005,
+          "touchdown_state": [
+            4.9999999999999725,
+            5.000000000000012,
+            -3.9999999999902174e-05,
+            2.6505306343451394e-14,
+            -1.4092028873085108e-14,
+            -0.008000000000000587,
+            0.7071067811865476,
+            -1.791288117411287e-16,
+            3.6836316084436155e-17,
+            0.7071067811865475,
+            2.0595683563988645e-15,
+            9.973562149033975e-15,
+            6.4421836592821865e-16,
+            624.7697773123639,
+            624.7697773123638,
+            624.7697773123638,
+            624.7697773123639,
+            31737.002647131183
+          ],
+          "max_landing_speed": 0.008054157607768888
+        },
+        "elapsed_s": 8.146961499995086
+      },
+      {
+        "name": "hover: timestep halving convergence",
+        "pass": true,
+        "max_position_difference_m": 0.0,
+        "max_attitude_difference_deg": 0.0,
+        "relative_energy_difference": 1.1726344750248045e-12,
+        "elapsed_s": 32.66635330003919
+      },
+      {
+        "name": "circle: timestep halving convergence",
+        "pass": true,
+        "max_position_difference_m": 4.507248922915576e-05,
+        "max_attitude_difference_deg": 0.003498807989728407,
+        "relative_energy_difference": 4.807185281745805e-09,
+        "elapsed_s": 25.449182600015774
+      },
+      {
+        "name": "mission: timestep halving convergence",
+        "pass": true,
+        "max_position_difference_m": 0.00021458877874039084,
+        "max_attitude_difference_deg": 0.016828600868777653,
+        "relative_energy_difference": 3.1235407992363847e-05,
+        "elapsed_s": 46.80582060001325
+      },
+      {
+        "name": "Full-resolution exported requested-torque CSV replays the full mission under zero-order hold",
+        "pass": true,
+        "CSV_rows": 32601,
+        "max_state_component_error": 0.0,
+        "max_shaft_torque_error_Nm": 0.0,
+        "elapsed_s": 22.548032200022135
+      },
+      {
+        "name": "Graph artist data preserves actual torques, input holds, phase legends and integrated orientations",
+        "pass": true,
+        "figures": [
+          {
+            "mission": "hover",
+            "motor_traces": 4,
+            "pose_snapshots": 3,
+            "stage_color_labels": [
+              "Hover"
+            ]
+          },
+          {
+            "mission": "circle",
+            "motor_traces": 4,
+            "pose_snapshots": 3,
+            "stage_color_labels": [
+              "Measured circle",
+              "Settling"
+            ]
+          },
+          {
+            "mission": "mission",
+            "motor_traces": 4,
+            "pose_snapshots": 4,
+            "stage_color_labels": [
+              "Contact / coast",
+              "Hover",
+              "Landing approach",
+              "Left yaw",
+              "Leg 1",
+              "Leg 2",
+              "Takeoff"
+            ]
+          }
+        ],
+        "note": "Artist-data verification; separate visual review is still required for typography and layout.",
+        "elapsed_s": 10.921591099991929
+      },
+      {
+        "name": "Old-parameter trajectories retain parity with the original fullprecision model",
+        "pass": true,
+        "comparisons": [
+          {
+            "mission": "hover",
+            "samples": 2401,
+            "maximum_component_differences": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "mission": "circle",
+            "samples": 1301,
+            "maximum_component_differences": [
+              1.3322676295501878e-15,
+              1.9984014443252818e-15,
+              2.220446049250313e-16,
+              1.1657341758564144e-15,
+              8.881784197001252e-16,
+              3.0513176078710014e-16,
+              3.3306690738754696e-16,
+              1.6393136847980827e-16,
+              1.7694179454963432e-16,
+              1.1485766764768313e-18,
+              1.4424225702747151e-15,
+              2.018350764299015e-15,
+              1.3091741232762466e-17,
+              2.2737367544323206e-13,
+              2.2737367544323206e-13,
+              2.2737367544323206e-13,
+              2.2737367544323206e-13,
+              9.094947017729282e-13
+            ]
+          },
+          {
+            "mission": "mission",
+            "samples": 3261,
+            "maximum_component_differences": [
+              1.7763568394002505e-15,
+              1.7763568394002505e-15,
+              5.88418203051333e-15,
+              4.1450297678299746e-14,
+              3.132862285863941e-14,
+              3.146788385421928e-15,
+              3.3306690738754696e-16,
+              3.107530112108625e-14,
+              9.032230136050935e-16,
+              5.551115123125783e-16,
+              9.201505422173157e-15,
+              6.7050930635500954e-15,
+              6.8833827526759706e-15,
+              7.958078640513122e-13,
+              7.958078640513122e-13,
+              7.958078640513122e-13,
+              7.958078640513122e-13,
+              9.094947017729282e-13
+            ]
+          }
+        ],
+        "note": "Old physical parameters only; intentionally excludes old lagged shaft-torque sample metadata.",
+        "elapsed_s": 54.20830350002507
+      },
+      {
+        "name": "Full mission remains feasible across stated rotor-inertia sensitivity scenarios",
+        "pass": true,
+        "scenarios": [
+          {
+            "Jr_kg_m2": 6.99e-05,
+            "pass": true,
+            "energy_Wh": 8.825126812035505,
+            "touchdown_speed_m_s": 0.007999999999999858
+          },
+          {
+            "Jr_kg_m2": 7.99e-05,
+            "pass": true,
+            "energy_Wh": 8.825549346425895,
+            "touchdown_speed_m_s": 0.008000000000000587
+          },
+          {
+            "Jr_kg_m2": 8.3e-05,
+            "pass": true,
+            "energy_Wh": 8.825679661675103,
+            "touchdown_speed_m_s": 0.007999999999999702
+          }
+        ],
+        "interpretation": "Illustrative sensitivity to unresolved motor rotor inertia, not a validated uncertainty distribution.",
+        "elapsed_s": 70.76222190004773
+      },
+      {
+        "name": "Insufficient battery cuts power and cannot falsely satisfy the goals",
+        "pass": true,
+        "capacity_Wh": 0.11840000000000002,
+        "first_empty_sample_s": 2.1,
+        "production_check_pass": false,
+        "elapsed_s": 0.9303881000378169
+      }
+    ],
+    "selected_check_filters": null,
+    "complete": true,
+    "pass": true,
+    "elapsed_s": 346.2229901999817
+  },
+  "supplemental": {
+    "generated_at_utc": "2026-11-14T21:47:05.147333+00:00",
+    "purpose": "Targeted checks after CSV schema and replay-metadata improvements; no broad-suite repeat.",
+    "parameters": {
+      "m": 1.7,
+      "g": 9.80665,
+      "a": 0.17678,
+      "Ixx": 0.017661,
+      "Iyy": 0.018373,
+      "Izz": 0.034584,
+      "kT": 1.06775e-05,
+      "kQ": 1.52451e-07,
+      "Jr": 7.99e-05,
+      "max_omega": 733.0382858376183,
+      "max_torque": 0.12,
+      "battery_voltage": 14.8,
+      "battery_ah": 5.0,
+      "usable_fraction": 0.8,
+      "efficiency": 0.75,
+      "avionics_power": 5.0,
+      "position_kp": 4.0,
+      "position_kd": 4.0,
+      "attitude_kp": 64.0,
+      "attitude_kd": 16.0,
+      "motor_time_constant": 0.025
+    },
+    "checks": [
+      {
+        "name": "Latest-schema exports reload all18states, references, commands, phases and metadata exactly",
+        "pass": true,
+        "runs": [
+          {
+            "mission": "hover",
+            "state_samples": 6001,
+            "input_samples": 24001,
+            "max_state_roundtrip_error": 0.0,
+            "parameters_events_metadata_exact": true,
+            "energy_Wh": 6.776154218314353
+          },
+          {
+            "mission": "circle",
+            "state_samples": 3251,
+            "input_samples": 13001,
+            "max_state_roundtrip_error": 0.0,
+            "parameters_events_metadata_exact": true,
+            "energy_Wh": 3.6708570676007723
+          },
+          {
+            "mission": "mission",
+            "state_samples": 8151,
+            "input_samples": 32601,
+            "max_state_roundtrip_error": 0.0,
+            "parameters_events_metadata_exact": true,
+            "energy_Wh": 8.825549346425895
+          }
+        ],
+        "output_folder": "outputs/AE352-Submission/results",
+        "note": "Fresh coherent nominal calculations generate the updated full18state/reference/commandCSV and metadataJSON.",
+        "elapsed_s": 51.492452100035734
+      },
+      {
+        "name": "CLI zero-order-hold replay preserves actual states, phases and measured landing events",
+        "pass": true,
+        "max_state_component_error": 0.0,
+        "sample_and_input_phases_exact": true,
+        "events_exact": true,
+        "max_landing_speed_m_s": 0.008054157607768888,
+        "touchdown_speed_m_s": 0.008000000000000587,
+        "elapsed_s": 11.684618500003126
+      },
+      {
+        "name": "Supplementary numerical sensitivity: efficiency_0.65",
+        "pass": true,
+        "parameter_override": {
+          "efficiency": 0.65
+        },
+        "energy_Wh": 10.148497109122664,
+        "usable_battery_Wh": 59.2,
+        "remaining_usable_percent": 82.85726839675226,
+        "events": {
+          "touchdown_speed": 0.008000000000000587,
+          "touchdown_time": 156.005,
+          "touchdown_state": [
+            4.9999999999999725,
+            5.000000000000012,
+            -3.9999999999902174e-05,
+            2.6505306343451394e-14,
+            -1.4092028873085108e-14,
+            -0.008000000000000587,
+            0.7071067811865476,
+            -1.791288117411287e-16,
+            3.6836316084436155e-17,
+            0.7071067811865475,
+            2.0595683563988645e-15,
+            9.973562149033975e-15,
+            6.4421836592821865e-16,
+            624.7697773123639,
+            624.7697773123638,
+            624.7697773123638,
+            624.7697773123639,
+            36499.614592839556
+          ],
+          "max_landing_speed": 0.008054157607768888
+        },
+        "production_goal_checks": {
+          "pass": true,
+          "checks": [
+            {
+              "name": "Finite dynamic states",
+              "value": true,
+              "limit": "all finite",
+              "pass": true
+            },
+            {
+              "name": "Usable battery remains",
+              "value": 10.148497109122664,
+              "limit": "less than 59.2000 Wh",
+              "pass": true
+            },
+            {
+              "name": "Mass in project bounds",
+              "value": 1.7,
+              "limit": "0.1 to 10 kg",
+              "pass": true
+            },
+            {
+              "name": "Ground start",
+              "value": 0.0,
+              "limit": "0 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 1 distance",
+              "value": 4.993122605518771,
+              "limit": "5 +/- 0.05 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 1 average speed",
+              "value": 0.9987056466489598,
+              "limit": "1 +/- 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Leg 1 straightness",
+              "value": 2.9603664338960247e-16,
+              "limit": "at most 0.02 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 2 distance",
+              "value": 4.993122606839134,
+              "limit": "5 +/- 0.05 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 2 average speed",
+              "value": 0.9987084282817783,
+              "limit": "1 +/- 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Leg 2 straightness",
+              "value": 2.1351369445810064e-06,
+              "limit": "at most 0.02 m",
+              "pass": true
+            },
+            {
+              "name": "Left yaw change",
+              "value": 89.99999999247616,
+              "limit": "90 +/- 1 degree",
+              "pass": true
+            },
+            {
+              "name": "Cruise altitude error",
+              "value": 0.001958263482149114,
+              "limit": "at most 0.02 m",
+              "pass": true
+            },
+            {
+              "name": "Stop before yaw",
+              "value": 0.0012398448941051121,
+              "limit": "at most 0.02 m/s",
+              "pass": true
+            },
+            {
+              "name": "Stop before landing",
+              "value": 0.0012398452437024832,
+              "limit": "at most 0.02 m/s",
+              "pass": true
+            },
+            {
+              "name": "Maximum landing descent",
+              "value": 0.008054157607768888,
+              "limit": "at most 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Precontact touchdown speed",
+              "value": 0.008000000000000587,
+              "limit": "at most 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Ground contact achieved",
+              "value": true,
+              "limit": "landed at Z=0",
+              "pass": true
+            },
+            {
+              "name": "Vertical landing drift",
+              "value": 0.00013162226270948516,
+              "limit": "at most 0.02 m",
+              "pass": true
+            }
+          ],
+          "metrics": {
+            "duration_s": 163.0,
+            "energy_Wh": 10.148497109122664,
+            "usable_energy_Wh": 59.2,
+            "usable_remaining_percent": 82.85726839675226,
+            "sampled_peak_power_W": 456.53429404195407,
+            "maximum_position_error_m": 0.011224701341937062,
+            "leg1_distance_m": 4.993122605518771,
+            "leg1_average_speed_m_s": 0.9987056466489598,
+            "leg2_distance_m": 4.993122606839134,
+            "leg2_average_speed_m_s": 0.9987084282817783,
+            "left_yaw_deg": 89.99999999247616,
+            "cruise_altitude_error_m": 0.001958263482149114,
+            "maximum_landing_speed_m_s": 0.008054157607768888,
+            "touchdown_speed_m_s": 0.008000000000000587,
+            "touchdown_time_s": 156.005,
+            "landing_drift_m": 0.00013162226270948516
+          }
+        },
+        "interpretation": "Numerical sensitivity only; this does not change the reported/default design or validate hardware uncertainty.",
+        "elapsed_s": 19.465623199997935
+      },
+      {
+        "name": "Supplementary numerical sensitivity: capacity_3Ah",
+        "pass": true,
+        "parameter_override": {
+          "battery_ah": 3.0
+        },
+        "energy_Wh": 8.825549346425895,
+        "usable_battery_Wh": 35.52000000000001,
+        "remaining_usable_percent": 75.15329575893611,
+        "events": {
+          "touchdown_speed": 0.008000000000000587,
+          "touchdown_time": 156.005,
+          "touchdown_state": [
+            4.9999999999999725,
+            5.000000000000012,
+            -3.9999999999902174e-05,
+            2.6505306343451394e-14,
+            -1.4092028873085108e-14,
+            -0.008000000000000587,
+            0.7071067811865476,
+            -1.791288117411287e-16,
+            3.6836316084436155e-17,
+            0.7071067811865475,
+            2.0595683563988645e-15,
+            9.973562149033975e-15,
+            6.4421836592821865e-16,
+            624.7697773123639,
+            624.7697773123638,
+            624.7697773123638,
+            624.7697773123639,
+            31737.002647131183
+          ],
+          "max_landing_speed": 0.008054157607768888
+        },
+        "production_goal_checks": {
+          "pass": true,
+          "checks": [
+            {
+              "name": "Finite dynamic states",
+              "value": true,
+              "limit": "all finite",
+              "pass": true
+            },
+            {
+              "name": "Usable battery remains",
+              "value": 8.825549346425895,
+              "limit": "less than 35.5200 Wh",
+              "pass": true
+            },
+            {
+              "name": "Mass in project bounds",
+              "value": 1.7,
+              "limit": "0.1 to 10 kg",
+              "pass": true
+            },
+            {
+              "name": "Ground start",
+              "value": 0.0,
+              "limit": "0 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 1 distance",
+              "value": 4.993122605518771,
+              "limit": "5 +/- 0.05 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 1 average speed",
+              "value": 0.9987056466489598,
+              "limit": "1 +/- 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Leg 1 straightness",
+              "value": 2.9603664338960247e-16,
+              "limit": "at most 0.02 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 2 distance",
+              "value": 4.993122606839134,
+              "limit": "5 +/- 0.05 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 2 average speed",
+              "value": 0.9987084282817783,
+              "limit": "1 +/- 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Leg 2 straightness",
+              "value": 2.1351369445810064e-06,
+              "limit": "at most 0.02 m",
+              "pass": true
+            },
+            {
+              "name": "Left yaw change",
+              "value": 89.99999999247616,
+              "limit": "90 +/- 1 degree",
+              "pass": true
+            },
+            {
+              "name": "Cruise altitude error",
+              "value": 0.001958263482149114,
+              "limit": "at most 0.02 m",
+              "pass": true
+            },
+            {
+              "name": "Stop before yaw",
+              "value": 0.0012398448941051121,
+              "limit": "at most 0.02 m/s",
+              "pass": true
+            },
+            {
+              "name": "Stop before landing",
+              "value": 0.0012398452437024832,
+              "limit": "at most 0.02 m/s",
+              "pass": true
+            },
+            {
+              "name": "Maximum landing descent",
+              "value": 0.008054157607768888,
+              "limit": "at most 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Precontact touchdown speed",
+              "value": 0.008000000000000587,
+              "limit": "at most 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Ground contact achieved",
+              "value": true,
+              "limit": "landed at Z=0",
+              "pass": true
+            },
+            {
+              "name": "Vertical landing drift",
+              "value": 0.00013162226270948516,
+              "limit": "at most 0.02 m",
+              "pass": true
+            }
+          ],
+          "metrics": {
+            "duration_s": 163.0,
+            "energy_Wh": 8.825549346425895,
+            "usable_energy_Wh": 35.52,
+            "usable_remaining_percent": 75.15329575893611,
+            "sampled_peak_power_W": 396.32972150302686,
+            "maximum_position_error_m": 0.011224701341937062,
+            "leg1_distance_m": 4.993122605518771,
+            "leg1_average_speed_m_s": 0.9987056466489598,
+            "leg2_distance_m": 4.993122606839134,
+            "leg2_average_speed_m_s": 0.9987084282817783,
+            "left_yaw_deg": 89.99999999247616,
+            "cruise_altitude_error_m": 0.001958263482149114,
+            "maximum_landing_speed_m_s": 0.008054157607768888,
+            "touchdown_speed_m_s": 0.008000000000000587,
+            "touchdown_time_s": 156.005,
+            "landing_drift_m": 0.00013162226270948516
+          }
+        },
+        "interpretation": "Numerical sensitivity only; this does not change the reported/default design or validate hardware uncertainty.",
+        "elapsed_s": 18.748221300018486
+      },
+      {
+        "name": "Supplementary numerical sensitivity: alternate_locked_Izz",
+        "pass": true,
+        "parameter_override": {
+          "Izz": 0.0349036
+        },
+        "energy_Wh": 8.82527795306666,
+        "usable_battery_Wh": 59.2,
+        "remaining_usable_percent": 85.0924358900901,
+        "events": {
+          "touchdown_speed": 0.00800000000000056,
+          "touchdown_time": 156.0,
+          "touchdown_state": [
+            4.999999999999972,
+            5.000000000000012,
+            -1.691355389077387e-17,
+            2.7809306665373704e-14,
+            -9.617531166906836e-15,
+            -0.00800000000000056,
+            0.7071067811865476,
+            -5.077567074080848e-17,
+            -8.062424537774978e-17,
+            0.7071067811865475,
+            1.0056305798272178e-15,
+            -1.2043340445631788e-14,
+            6.435412973829828e-16,
+            624.7697773123639,
+            624.7697773123639,
+            624.7697773123638,
+            624.7697773123638,
+            31736.000631037936
+          ],
+          "max_landing_speed": 0.008054157608253953
+        },
+        "production_goal_checks": {
+          "pass": true,
+          "checks": [
+            {
+              "name": "Finite dynamic states",
+              "value": true,
+              "limit": "all finite",
+              "pass": true
+            },
+            {
+              "name": "Usable battery remains",
+              "value": 8.82527795306666,
+              "limit": "less than 59.2000 Wh",
+              "pass": true
+            },
+            {
+              "name": "Mass in project bounds",
+              "value": 1.7,
+              "limit": "0.1 to 10 kg",
+              "pass": true
+            },
+            {
+              "name": "Ground start",
+              "value": 0.0,
+              "limit": "0 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 1 distance",
+              "value": 4.993122605518771,
+              "limit": "5 +/- 0.05 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 1 average speed",
+              "value": 0.9987056466489598,
+              "limit": "1 +/- 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Leg 1 straightness",
+              "value": 2.9604616375369916e-16,
+              "limit": "at most 0.02 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 2 distance",
+              "value": 4.993122606631028,
+              "limit": "5 +/- 0.05 m",
+              "pass": true
+            },
+            {
+              "name": "Leg 2 average speed",
+              "value": 0.9987085130067719,
+              "limit": "1 +/- 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Leg 2 straightness",
+              "value": 2.1528340541365765e-06,
+              "limit": "at most 0.02 m",
+              "pass": true
+            },
+            {
+              "name": "Left yaw change",
+              "value": 89.99999999247616,
+              "limit": "90 +/- 1 degree",
+              "pass": true
+            },
+            {
+              "name": "Cruise altitude error",
+              "value": 0.0019946437142230877,
+              "limit": "at most 0.02 m",
+              "pass": true
+            },
+            {
+              "name": "Stop before yaw",
+              "value": 0.0012398448941050185,
+              "limit": "at most 0.02 m/s",
+              "pass": true
+            },
+            {
+              "name": "Stop before landing",
+              "value": 0.0012398452483887257,
+              "limit": "at most 0.02 m/s",
+              "pass": true
+            },
+            {
+              "name": "Maximum landing descent",
+              "value": 0.008054157608253953,
+              "limit": "at most 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Precontact touchdown speed",
+              "value": 0.00800000000000056,
+              "limit": "at most 0.01 m/s",
+              "pass": true
+            },
+            {
+              "name": "Ground contact achieved",
+              "value": true,
+              "limit": "landed at Z=0",
+              "pass": true
+            },
+            {
+              "name": "Vertical landing drift",
+              "value": 0.00013162226598331122,
+              "limit": "at most 0.02 m",
+              "pass": true
+            }
+          ],
+          "metrics": {
+            "duration_s": 163.0,
+            "energy_Wh": 8.82527795306666,
+            "usable_energy_Wh": 59.2,
+            "usable_remaining_percent": 85.0924358900901,
+            "sampled_peak_power_W": 396.32972150302686,
+            "maximum_position_error_m": 0.011224701341937062,
+            "leg1_distance_m": 4.993122605518771,
+            "leg1_average_speed_m_s": 0.9987056466489598,
+            "leg2_distance_m": 4.993122606631028,
+            "leg2_average_speed_m_s": 0.9987085130067719,
+            "left_yaw_deg": 89.99999999247616,
+            "cruise_altitude_error_m": 0.0019946437142230877,
+            "maximum_landing_speed_m_s": 0.008054157608253953,
+            "touchdown_speed_m_s": 0.00800000000000056,
+            "touchdown_time_s": 156.0,
+            "landing_drift_m": 0.00013162226598331122
+          }
+        },
+        "interpretation": "Numerical sensitivity only; this does not change the reported/default design or validate hardware uncertainty.",
+        "elapsed_s": 19.0137257000315
+      }
+    ],
+    "complete": true,
+    "pass": true,
+    "elapsed_s": 120.42558929999359,
+    "source_snapshot_at_supplemental_completion": {
+      "model.py": "0cee878fdaf12ee1970e219941766464fd6a1b9b08d20588641f03e41599368a",
+      "analysis.py": "3f0647e2e660b9048b14f849b9324f83788337a50d629bb807c294fc18f3c1d5",
+      "run.py": "bc675a25b829ac93b70ad03f89d157e19d6c77807e0398fe63ef26f1863fae04"
+    },
+    "observed_runtime": {
+      "python": "3.14.7",
+      "numpy": "2.5.4",
+      "matplotlib": "3.11.2"
+    }
+  },
+  "interface_checks": {
+    "pass": true,
+    "backend": "Matplotlib TkAgg on Windows Python3.14",
+    "checks": [
+      "worker completion",
+      "mission selector",
+      "time scrub",
+      "position/attitude/rotor/energy traces",
+      "playback",
+      "parameter edits",
+      "yaw and manual torque inputs",
+      "CSV export"
+    ]
+  },
+  "final_source_sha256": {
+    "analysis.py": "a01e9679389dd544d366497960be24d65ecd16c53dc8ea059a70c1527ff95f7b",
+    "model.py": "0cee878fdaf12ee1970e219941766464fd6a1b9b08d20588641f03e41599368a",
+    "run.py": "27c999b40a2accea8167e68c13f345e68abb14c17ca8124b1885ef0a1ff65eae"
+  },
+  "final_saved_data_checks": {
+    "pass": true,
+    "all_three_goal_checks": true,
+    "full_step_torque_curve_data": true,
+    "all_10_snapshot_orientations": true,
+    "final_widget_clock_sync": true
+  }
+}

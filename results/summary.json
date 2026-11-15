@@ -1,0 +1,283 @@
+{
+  "parameters": {
+    "m": 1.7,
+    "g": 9.80665,
+    "a": 0.17678,
+    "Ixx": 0.017661,
+    "Iyy": 0.018373,
+    "Izz": 0.034584,
+    "kT": 1.06775e-05,
+    "kQ": 1.52451e-07,
+    "Jr": 7.99e-05,
+    "max_omega": 733.0382858376183,
+    "max_torque": 0.12,
+    "battery_voltage": 14.8,
+    "battery_ah": 5.0,
+    "usable_fraction": 0.8,
+    "efficiency": 0.75,
+    "avionics_power": 5.0,
+    "drag": 0.0,
+    "wind": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "position_kp": 4.0,
+    "position_kd": 4.0,
+    "attitude_kp": 64.0,
+    "attitude_kd": 16.0,
+    "motor_time_constant": 0.025
+  },
+  "missions": {
+    "hover": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "Finite dynamic states",
+          "value": true,
+          "limit": "all finite",
+          "pass": true
+        },
+        {
+          "name": "Usable battery remains",
+          "value": 6.776154218314353,
+          "limit": "less than 59.2000 Wh",
+          "pass": true
+        },
+        {
+          "name": "Mass in project bounds",
+          "value": 1.7,
+          "limit": "0.1 to 10 kg",
+          "pass": true
+        },
+        {
+          "name": "Hover duration",
+          "value": 120.0,
+          "limit": "at least 120 s",
+          "pass": true
+        },
+        {
+          "name": "Hover position error",
+          "value": 0.0,
+          "limit": "at most 0.02 m",
+          "pass": true
+        },
+        {
+          "name": "Hover speed",
+          "value": 2.0072832285222746e-15,
+          "limit": "at most 0.03 m/s",
+          "pass": true
+        }
+      ],
+      "metrics": {
+        "duration_s": 120.0,
+        "energy_Wh": 6.776154218314353,
+        "usable_energy_Wh": 59.2,
+        "usable_remaining_percent": 88.55379355014468,
+        "sampled_peak_power_W": 203.2846265494468,
+        "sampled_peak_pack_current_A": 13.735447739827487,
+        "sampled_peak_rotor_rpm": 5966.111901221124,
+        "sampled_peak_motor_shaft_power_W": 37.17836747802128,
+        "maximum_position_error_m": 0.0,
+        "hover_position_error_m": 0.0
+      }
+    },
+    "circle": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "Finite dynamic states",
+          "value": true,
+          "limit": "all finite",
+          "pass": true
+        },
+        {
+          "name": "Usable battery remains",
+          "value": 3.6708570676007723,
+          "limit": "less than 59.2000 Wh",
+          "pass": true
+        },
+        {
+          "name": "Mass in project bounds",
+          "value": 1.7,
+          "limit": "0.1 to 10 kg",
+          "pass": true
+        },
+        {
+          "name": "Measured circle duration",
+          "value": 60.0,
+          "limit": "at least 60 s",
+          "pass": true
+        },
+        {
+          "name": "Circle radial error",
+          "value": 3.023394619838804e-05,
+          "limit": "at most 0.02 m",
+          "pass": true
+        },
+        {
+          "name": "Circle speed error",
+          "value": 5.701666054475085e-05,
+          "limit": "at most 0.01 m/s",
+          "pass": true
+        },
+        {
+          "name": "Circle altitude error",
+          "value": 5.792209764043932e-07,
+          "limit": "at most 0.02 m",
+          "pass": true
+        }
+      ],
+      "metrics": {
+        "duration_s": 65.0,
+        "energy_Wh": 3.6708570676007723,
+        "usable_energy_Wh": 59.2,
+        "usable_remaining_percent": 93.79922792635004,
+        "sampled_peak_power_W": 203.3816012311842,
+        "sampled_peak_pack_current_A": 13.74200008318812,
+        "sampled_peak_rotor_rpm": 5978.585000178704,
+        "sampled_peak_motor_shaft_power_W": 40.540339005653465,
+        "maximum_position_error_m": 0.008716406647290358,
+        "radius_error_m": 3.023394619838804e-05,
+        "speed_error_m_s": 5.701666054475085e-05,
+        "altitude_error_m": 5.792209764043932e-07
+      }
+    },
+    "mission": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "Finite dynamic states",
+          "value": true,
+          "limit": "all finite",
+          "pass": true
+        },
+        {
+          "name": "Usable battery remains",
+          "value": 8.825549346425895,
+          "limit": "less than 59.2000 Wh",
+          "pass": true
+        },
+        {
+          "name": "Mass in project bounds",
+          "value": 1.7,
+          "limit": "0.1 to 10 kg",
+          "pass": true
+        },
+        {
+          "name": "Ground start",
+          "value": 0.0,
+          "limit": "0 m",
+          "pass": true
+        },
+        {
+          "name": "Leg 1 distance",
+          "value": 4.993122605518771,
+          "limit": "5 +/- 0.05 m",
+          "pass": true
+        },
+        {
+          "name": "Leg 1 average speed",
+          "value": 0.9987056466489598,
+          "limit": "1 +/- 0.01 m/s",
+          "pass": true
+        },
+        {
+          "name": "Leg 1 straightness",
+          "value": 2.9603664338960247e-16,
+          "limit": "at most 0.02 m",
+          "pass": true
+        },
+        {
+          "name": "Leg 2 distance",
+          "value": 4.993122606839134,
+          "limit": "5 +/- 0.05 m",
+          "pass": true
+        },
+        {
+          "name": "Leg 2 average speed",
+          "value": 0.9987084282817783,
+          "limit": "1 +/- 0.01 m/s",
+          "pass": true
+        },
+        {
+          "name": "Leg 2 straightness",
+          "value": 2.1351369445810064e-06,
+          "limit": "at most 0.02 m",
+          "pass": true
+        },
+        {
+          "name": "Left yaw change",
+          "value": 89.99999999247616,
+          "limit": "90 +/- 1 degree",
+          "pass": true
+        },
+        {
+          "name": "Cruise altitude error",
+          "value": 0.001958263482149114,
+          "limit": "at most 0.02 m",
+          "pass": true
+        },
+        {
+          "name": "Stop before yaw",
+          "value": 0.0012398448941051121,
+          "limit": "at most 0.02 m/s",
+          "pass": true
+        },
+        {
+          "name": "Stop before landing",
+          "value": 0.0012398452437024832,
+          "limit": "at most 0.02 m/s",
+          "pass": true
+        },
+        {
+          "name": "Maximum landing descent",
+          "value": 0.008054157607768888,
+          "limit": "at most 0.01 m/s",
+          "pass": true
+        },
+        {
+          "name": "Precontact touchdown speed",
+          "value": 0.008000000000000587,
+          "limit": "at most 0.01 m/s",
+          "pass": true
+        },
+        {
+          "name": "Ground contact achieved",
+          "value": true,
+          "limit": "landed at Z=0",
+          "pass": true
+        },
+        {
+          "name": "Vertical landing drift",
+          "value": 0.00013162226270948516,
+          "limit": "at most 0.02 m",
+          "pass": true
+        }
+      ],
+      "metrics": {
+        "duration_s": 163.0,
+        "energy_Wh": 8.825549346425895,
+        "usable_energy_Wh": 59.2,
+        "usable_remaining_percent": 85.09197745536167,
+        "sampled_peak_power_W": 396.32972150302686,
+        "sampled_peak_pack_current_A": 26.779035236691,
+        "sampled_peak_rotor_rpm": 6173.218001594617,
+        "sampled_peak_motor_shaft_power_W": 73.37432278181754,
+        "maximum_position_error_m": 0.011224701341937062,
+        "leg1_distance_m": 4.993122605518771,
+        "leg1_average_speed_m_s": 0.9987056466489598,
+        "leg2_distance_m": 4.993122606839134,
+        "leg2_average_speed_m_s": 0.9987084282817783,
+        "left_yaw_deg": 89.99999999247616,
+        "cruise_altitude_error_m": 0.001958263482149114,
+        "maximum_landing_speed_m_s": 0.008054157607768888,
+        "touchdown_speed_m_s": 0.008000000000000587,
+        "touchdown_time_s": 156.005,
+        "landing_drift_m": 0.00013162226270948516
+      }
+    }
+  },
+  "physics_checks": {},
+  "pass": true
+}

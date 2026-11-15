@@ -1,0 +1,44 @@
+{
+  "params": {
+    "m": 1.7,
+    "g": 9.80665,
+    "a": 0.17678,
+    "Ixx": 0.017661,
+    "Iyy": 0.018373,
+    "Izz": 0.034584,
+    "kT": 1.06775e-05,
+    "kQ": 1.52451e-07,
+    "Jr": 7.99e-05,
+    "max_omega": 733.0382858376183,
+    "max_torque": 0.12,
+    "battery_voltage": 14.8,
+    "battery_ah": 5.0,
+    "usable_fraction": 0.8,
+    "efficiency": 0.75,
+    "avionics_power": 5.0,
+    "drag": 0.0,
+    "wind": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "position_kp": 4.0,
+    "position_kd": 4.0,
+    "attitude_kp": 64.0,
+    "attitude_kd": 16.0,
+    "motor_time_constant": 0.025
+  },
+  "events": {
+    "touchdown_speed": null,
+    "touchdown_time": null,
+    "touchdown_state": null,
+    "max_landing_speed": 0.0
+  },
+  "metadata": {
+    "mission": "hover",
+    "duration": 120.0,
+    "dt": 0.005,
+    "sample_dt": 0.02,
+    "torque_timestamp": "current state time"
+  }
+}
