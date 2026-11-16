@@ -1034,7 +1034,7 @@
     ]
   },
   "final_source_sha256": {
-    "analysis.py": "a01e9679389dd544d366497960be24d65ecd16c53dc8ea059a70c1527ff95f7b",
+    "analysis.py": "8c972552df39303f05e1b9d542e85dcfdf25d900c45107fb644136401987cba3",
     "model.py": "0cee878fdaf12ee1970e219941766464fd6a1b9b08d20588641f03e41599368a",
     "run.py": "27c999b40a2accea8167e68c13f345e68abb14c17ca8124b1885ef0a1ff65eae"
   },
@@ -1044,5 +1044,112 @@
     "full_step_torque_curve_data": true,
     "all_10_snapshot_orientations": true,
     "final_widget_clock_sync": true
+  },
+  "source_snapshot_before_combined_figures": {
+    "analysis.py": "a01e9679389dd544d366497960be24d65ecd16c53dc8ea059a70c1527ff95f7b",
+    "model.py": "0cee878fdaf12ee1970e219941766464fd6a1b9b08d20588641f03e41599368a",
+    "run.py": "27c999b40a2accea8167e68c13f345e68abb14c17ca8124b1885ef0a1ff65eae"
+  },
+  "combined_figure_checks": {
+    "purpose": "Combined torque/six-DOF/performance figure data and layout verification; no dynamics changes or new integrations.",
+    "pass": true,
+    "flights": [
+      {
+        "flight": "hover",
+        "pass": true,
+        "panel_count": 3,
+        "top_level_axes": 16,
+        "pose_snapshots": 3,
+        "panels": [
+          {
+            "axes_including_insets": 6,
+            "line_artists_compared": 34,
+            "coordinate_values_compared": 193370,
+            "all_series_and_pose_vertices_exact": true
+          },
+          {
+            "axes_including_insets": 6,
+            "line_artists_compared": 9,
+            "coordinate_values_compared": 108018,
+            "all_series_and_pose_vertices_exact": true
+          },
+          {
+            "axes_including_insets": 4,
+            "line_artists_compared": 5,
+            "coordinate_values_compared": 60010,
+            "all_series_and_pose_vertices_exact": true
+          }
+        ],
+        "labels_and_legends_within_image_bounds": true,
+        "layout_warnings": [],
+        "physics_recomputed": false
+      },
+      {
+        "flight": "circle",
+        "pass": true,
+        "panel_count": 3,
+        "top_level_axes": 16,
+        "pose_snapshots": 3,
+        "panels": [
+          {
+            "axes_including_insets": 7,
+            "line_artists_compared": 38,
+            "coordinate_values_compared": 201378,
+            "all_series_and_pose_vertices_exact": true
+          },
+          {
+            "axes_including_insets": 6,
+            "line_artists_compared": 9,
+            "coordinate_values_compared": 58518,
+            "all_series_and_pose_vertices_exact": true
+          },
+          {
+            "axes_including_insets": 4,
+            "line_artists_compared": 5,
+            "coordinate_values_compared": 32510,
+            "all_series_and_pose_vertices_exact": true
+          }
+        ],
+        "labels_and_legends_within_image_bounds": true,
+        "layout_warnings": [],
+        "physics_recomputed": false
+      },
+      {
+        "flight": "mission",
+        "pass": true,
+        "panel_count": 3,
+        "top_level_axes": 17,
+        "pose_snapshots": 4,
+        "panels": [
+          {
+            "axes_including_insets": 8,
+            "line_artists_compared": 49,
+            "coordinate_values_compared": 523436,
+            "all_series_and_pose_vertices_exact": true
+          },
+          {
+            "axes_including_insets": 6,
+            "line_artists_compared": 9,
+            "coordinate_values_compared": 146718,
+            "all_series_and_pose_vertices_exact": true
+          },
+          {
+            "axes_including_insets": 4,
+            "line_artists_compared": 6,
+            "coordinate_values_compared": 78514,
+            "all_series_and_pose_vertices_exact": true
+          }
+        ],
+        "labels_and_legends_within_image_bounds": true,
+        "layout_warnings": [],
+        "physics_recomputed": false
+      }
+    ],
+    "submission_python_files": [
+      "analysis.py",
+      "model.py",
+      "run.py"
+    ],
+    "model_runner_calculations_and_saved_data_unchanged": true
   }
 }

@@ -16,17 +16,17 @@
     "usable_fraction": 0.8,
     "efficiency": 0.75,
     "avionics_power": 5.0,
+    "position_kp": 4.0,
+    "position_kd": 4.0,
+    "attitude_kp": 64.0,
+    "attitude_kd": 16.0,
+    "motor_time_constant": 0.025,
     "drag": 0.0,
     "wind": [
       0.0,
       0.0,
       0.0
-    ],
-    "position_kp": 4.0,
-    "position_kd": 4.0,
-    "attitude_kp": 64.0,
-    "attitude_kd": 16.0,
-    "motor_time_constant": 0.025
+    ]
   },
   "events": {
     "touchdown_speed": null,

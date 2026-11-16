@@ -45,6 +45,8 @@ The three principal figures are:
 
 Each contains the four **applied motor shaft torques** versus time, with separate colors/line styles, shaded flight stages, marked timestamps, and drone snapshots calculated from the integrated orientation. The snapshots are simulated renderings, not photographs; their angles are not exaggerated. Hover's equal traces overlap. The circle includes a magnified torque-deviation inset. The full sequence includes an ascent-to-hover detail inset.
 
+**For one image containing every plot for a flight, use `hover_combined.png`, `circle_combined.png`, or `mission_combined.png` in `figures/`.** Each combines motor inputs and attitude snapshots at the top, six-degree-of-freedom histories below left, and trajectory/performance plots below right. These are generated directly from the same numerical data at 300 dpi; matching SVGs retain vector graphics. The individual figures remain available for separate placement in the paper.
+
 The matching SVGs are vector figures. Each maneuver also has a `*_six_dof` figure and a `*_performance` figure for the report's position/attitude, path, speed, power, and landing evidence. Figure functions and snapshot times are editable in `analysis.py`.
 
 After editing figure labels or formatting, redraw the saved solution without another simulation:

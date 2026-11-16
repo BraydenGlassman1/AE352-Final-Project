@@ -4,6 +4,8 @@ These are software handoff notes for the team report. Revise wording to reflect 
 
 ## Suggested figure captions
 
+The `*_combined.png` / `*_combined.svg` files collect all plots for each flight in one figure. Top: motor torques, stage shading, and actual-state orientation snapshots. Lower left: position and Euler-angle histories. Lower right: ground track, speed, electrical power, and energy (or landing speed for the full sequence). The maneuver-specific motor-input captions below also describe the top section of each combined figure.
+
 **Hover motor inputs.** Applied motor shaft torques for a 120 s equilibrium hover at 1 m using the updated report parameter set. All four inputs coincide at approximately 0.05951 N m. Snapshots show the simulated attitude at 0, 60, and 120 s. Hover is initialized airborne; this figure does not include takeoff.
 
 **Circular-flight motor inputs.** Applied motor torques during a 65 s circular-flight simulation, with a 5 s settling period followed by 60 measured seconds at 2 m radius, 1 m altitude, and 0.5 m/s. The inset magnifies computed torque differences from the hover baseline; its micro-newton-metre scale describes the numerical solution, not measurement precision. Snapshot attitudes are taken from the integrated state at 5, 13, and 21 s.

@@ -230,14 +230,15 @@ def _stage_shading(ax, run):
     return handles
 
 
-def torque_figure(run):
+def torque_figure(run, fig=None):
     """One figure per goal: 4 torque histories, stage colors, zoom, actual poses."""
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
     from matplotlib.ticker import MaxNLocator
     name, t, tau = run["metadata"]["mission"], run["inputs"]["t"], run["inputs"]["torque"]
-    fig = plt.figure(figsize=(8.0, 6.4), layout="constrained")
-    grid = fig.add_gridspec(3, 1, height_ratios=[0.12, 1.0, 0.52])
+    if fig is None:
+        fig = plt.figure(figsize=(8.0, 6.4), layout="constrained")
+    grid = fig.add_gridspec(4, 1, height_ratios=[0.12, 1.0, 0.52, 0.15])
     title = fig.add_subplot(grid[0]); title.axis("off")
     title.text(0, 0.95, NAMES[name] + " | motor torque inputs", va="top",
                fontsize=12, fontweight="bold", color="#193440")
@@ -258,8 +259,8 @@ def torque_figure(run):
     ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
     motors = [Line2D([0], [0], color=COLORS[i], ls=styles[i], lw=1.5, label=f"Motor {i + 1}") for i in range(4)]
     ax.legend(handles=motors, loc="upper right", ncol=4, framealpha=0.95, fontsize=8)
-    fig.legend(handles=stages, loc="lower center", ncol=min(len(stages), 3),
-               fontsize=8, frameon=False, bbox_to_anchor=(0.5, -0.04))
+    stage_key = fig.add_subplot(grid[3]); stage_key.axis("off")
+    stage_key.legend(handles=stages, loc="center", ncol=min(len(stages), 4), fontsize=8, frameon=False)
     if name == "mission":
         # Slow landing makes the first 30 s look compressed; retain the full run
         # and add a clearly labeled zoom of the ascent-to-hover transition.
@@ -304,10 +305,12 @@ def torque_figure(run):
     return fig
 
 
-def performance_figure(run):
+def performance_figure(run, fig=None):
     """Compact six-DOF histories plus measurable power/landing evidence."""
     import matplotlib.pyplot as plt
-    fig, axes = plt.subplots(3, 2, figsize=(10.8, 8.2), layout="constrained")
+    if fig is None:
+        fig = plt.figure(figsize=(10.8, 8.2), layout="constrained")
+    axes = fig.subplots(3, 2)
     for k in range(3):
         axes[k, 0].plot(run["t"], run["position"][:, k], color=COLORS[0], lw=1.2, label="Actual")
         axes[k, 0].plot(run["t"], run["reference"][:, k], color=COLORS[1], lw=0.9, ls="--", label="Reference")
@@ -328,10 +331,12 @@ def performance_figure(run):
     return fig
 
 
-def path_energy_figure(run):
+def path_energy_figure(run, fig=None):
     import matplotlib.pyplot as plt
     name = run["metadata"]["mission"]
-    fig, axes = plt.subplots(2, 2, figsize=(10.8, 7.4), layout="constrained")
+    if fig is None:
+        fig = plt.figure(figsize=(10.8, 7.4), layout="constrained")
+    axes = fig.subplots(2, 2)
     axes[0, 0].plot(*run["reference"][:, :2].T, ls="--", color=COLORS[1], lw=1, label="Reference")
     axes[0, 0].plot(*run["position"][:, :2].T, color=COLORS[0], lw=1.3, label="Actual")
     axes[0, 0].set(xlabel="X [m]", ylabel="Y [m]", title="Ground track")
@@ -361,14 +366,26 @@ def path_energy_figure(run):
     return fig
 
 
+def combined_figure(run):
+    """One image per flight, with all three plot groups and real-state snapshots."""
+    import matplotlib.pyplot as plt
+    fig = plt.figure(figsize=(16, 14), layout="constrained")
+    torque_panel, response_panel = fig.subfigures(2, 1, height_ratios=[1, 1.05])
+    six_dof_panel, performance_panel = response_panel.subfigures(1, 2, wspace=0.04)
+    torque_figure(run, torque_panel)
+    performance_figure(run, six_dof_panel)
+    path_energy_figure(run, performance_panel)
+    return fig
+
+
 def make_figures(run, folder, formats=("png", "svg")):
-    """Write three readable paper panels for one maneuver, all from actual data."""
+    """Write a combined image and its three individual plot groups per flight."""
     import matplotlib.pyplot as plt
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9, "axes.spines.top": False,
                          "axes.spines.right": False, "savefig.dpi": 300})
     folder = Path(folder); folder.mkdir(parents=True, exist_ok=True)
     name = run["metadata"]["mission"]
-    for suffix, factory in [("motor_torques", torque_figure), ("six_dof", performance_figure),
+    for suffix, factory in [("combined", combined_figure), ("motor_torques", torque_figure), ("six_dof", performance_figure),
                             ("performance", path_energy_figure)]:
         fig = factory(run)
         for extension in formats:

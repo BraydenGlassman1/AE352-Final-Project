@@ -1,4 +1,5 @@
 {
+  "scope": "Numerical goal verification under the explicitly provisional rotor, electrical, and motor-envelope assumptions in README.md.",
   "parameters": {
     "m": 1.7,
     "g": 9.80665,
@@ -80,6 +81,11 @@
         "sampled_peak_motor_shaft_power_W": 37.17836747802128,
         "maximum_position_error_m": 0.0,
         "hover_position_error_m": 0.0
+      },
+      "step_convergence": {
+        "maximum_position_difference_m": 0.0,
+        "limit_m": 0.01,
+        "pass": true
       }
     },
     "circle": {
@@ -141,6 +147,11 @@
         "radius_error_m": 3.023394619838804e-05,
         "speed_error_m_s": 5.701666054475085e-05,
         "altitude_error_m": 5.792209764043932e-07
+      },
+      "step_convergence": {
+        "maximum_position_difference_m": 4.50690017846392e-05,
+        "limit_m": 0.01,
+        "pass": true
       }
     },
     "mission": {
@@ -275,9 +286,18 @@
         "touchdown_speed_m_s": 0.008000000000000587,
         "touchdown_time_s": 156.005,
         "landing_drift_m": 0.00013162226270948516
+      },
+      "step_convergence": {
+        "maximum_position_difference_m": 0.0002145643601925327,
+        "limit_m": 0.01,
+        "pass": true
       }
     }
   },
-  "physics_checks": {},
+  "physics_checks": {
+    "hover_equilibrium": true,
+    "analytic_freefall": true,
+    "yaw_momentum_balance": true
+  },
   "pass": true
 }
