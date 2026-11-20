@@ -1,5 +1,18 @@
+    def telemetry(name):
+        path = (
+            "AE352-Final-Project-main/results/"
+            f"{name}_telemetry.csv"
+        )
+        return pd.read_csv(io.BytesIO(z.read(path)))
+
+    hover = telemetry("hover")
+    circle = telemetry("circle")
+    mission = telemetry("mission")
+
+# Create the graph
 fig, ax = plt.subplots(figsize=(10, 5.5))
 
+# Plot mission first, behind the other curves
 ax.plot(
     mission["t_s"],
     mission["usable_soc"] * 100,
@@ -11,6 +24,7 @@ ax.plot(
     zorder=1
 )
 
+# Plot hover with greater visibility
 ax.plot(
     hover["t_s"],
     hover["usable_soc"] * 100,
@@ -21,6 +35,7 @@ ax.plot(
     zorder=3
 )
 
+# Plot circular flight with greater visibility
 ax.plot(
     circle["t_s"],
     circle["usable_soc"] * 100,
@@ -31,6 +46,7 @@ ax.plot(
     zorder=4
 )
 
+# Mark final battery percentage for each maneuver
 for data, color, marker in [
     (hover, "tab:blue", "o"),
     (circle, "tab:orange", "s"),
@@ -45,6 +61,7 @@ for data, color, marker in [
         zorder=5
     )
 
+# Labels and formatting
 ax.set_title(
     "ER3 | Battery Energy Remaining During Required Maneuvers\n"
     "Each simulation starts with a fresh modeled battery"
