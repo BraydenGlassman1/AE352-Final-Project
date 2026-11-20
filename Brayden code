@@ -1,0 +1,53 @@
+fig, ax = plt.subplots(
+    figsize=(10, 5.5),
+    layout="constrained"
+)
+
+maneuvers = [
+    ("hover", "Hover, 120 s"),
+    ("circle", "Circle, 65 s"),
+    ("mission", "Full mission")
+]
+
+for name, label in maneuvers:
+    data = telemetry(name)
+
+    ax.plot(
+        data["t_s"],
+        100 * data["usable_soc"],
+        label=label,
+        linewidth=2
+    )
+
+# Battery exhaustion threshold
+ax.axhline(
+    0,
+    color="black",
+    linestyle="--",
+    linewidth=1,
+    label="Battery exhausted (0%)"
+)
+
+ax.set_xlabel("Time (s)")
+ax.set_ylabel(
+    "Usable battery energy remaining (%)"
+)
+
+ax.set_title(
+    "ER3 | Battery remains above exhaustion "
+    "for all three maneuvers\n"
+    "Each simulation starts with a fresh "
+    "modeled battery"
+)
+
+ax.set_ylim(-3, 105)
+ax.legend()
+ax.grid(alpha=0.25)
+
+plt.savefig(
+    "AE352_ER3_Battery_Verification.png",
+    dpi=190,
+    bbox_inches="tight"
+)
+
+plt.show()
